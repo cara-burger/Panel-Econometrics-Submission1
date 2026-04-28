@@ -1,0 +1,67 @@
+# ECONOMETRICS 871 - API Assignment
+## Brent Crude Oil Prices via FRED
+
+**Author:** Cara Burger | **Date:** April 2026
+
+---
+
+## Overview
+
+Fetches daily Brent crude oil prices from the FRED API (2000–2024) using the `fredr` package. Brent crude is the global benchmark for oil pricing, making it a useful lens for studying commodity price volatility and global macro shocks.
+
+---
+
+## Data
+
+| FRED Code      | Description                           |
+|----------------|---------------------------------------|
+| `DCOILBRENTEU` | Brent crude oil price, USD per barrel |
+
+Source: Federal Reserve Bank of St. Louis (https://fred.stlouisfed.org)
+
+---
+
+## Workflow
+
+**Packages**: `fredr` and `tidyverse` loaded via `pacman`:
+```r
+p_load(fredr, tidyverse)
+```
+
+**Fetch**: daily price series pulled directly from FRED:
+```r
+fredr(series_id = "DCOILBRENTEU", ...)
+```
+
+**Clean**: select date and price columns, drop missing values:
+```r
+select(date, price = value) %>% drop_na()
+```
+
+**Transform**: year-on-year % change using a 365-day lag:
+```r
+mutate(returns = (price / lag(price, 365) - 1) * 100)
+```
+
+**Visualise**: two plots saved to `figures/` via `ggsave()`.
+
+---
+
+## Figures
+
+**Fig 1: Price Level (2000–2024)**
+The 2008 GFC, 2014 oil glut, 2020 COVID collapse, and 2022 Russia-Ukraine energy shock are all clearly visible.
+
+**Fig 2: Year-on-Year Returns (%)**
+Highlights the most volatile years in the sample as positive and negative bars.
+
+---
+
+## How to Reproduce
+
+1. Get a free API key at: https://fred.stlouisfed.org/docs/api/api_key.html
+2. Replace `"YOUR_API_KEY_HERE"` in `analysis.R`
+3. Create output folders: `dir.create("figures"); dir.create("data")`
+4. Run `analysis.R` in RStudio with Ctrl+Shift+Enter
+
+---
