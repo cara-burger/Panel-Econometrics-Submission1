@@ -49,11 +49,15 @@ mutate(returns = (price / lag(price, 365) - 1) * 100)
 
 ## Figures
 
-**Fig 1: Price Level (2000–2024)**
+**Fig 1:  Price Level (2000–2024)**
 The 2008 GFC, 2014 oil glut, 2020 COVID collapse, and 2022 Russia-Ukraine energy shock are all clearly visible.
+
+![Figure 1](figures/fig1_brent_price.png)
 
 **Fig 2: Year-on-Year Returns (%)**
 Highlights the most volatile years in the sample as positive and negative bars.
+
+![Figure 2](figures/fig2_brent_returns.png)
 
 ---
 
