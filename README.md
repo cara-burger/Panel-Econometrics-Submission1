@@ -17,7 +17,7 @@ Fetches daily Brent crude oil prices from the FRED API (2000–2024) using the `
 |----------------|---------------------------------------|
 | `DCOILBRENTEU` | Brent crude oil price, USD per barrel |
 
-Source: Federal Reserve Bank of St. Louis — https://fred.stlouisfed.org
+Source: Federal Reserve Bank of St. Louis (https://fred.stlouisfed.org)
 
 ---
 
